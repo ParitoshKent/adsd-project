@@ -26,5 +26,6 @@ body{
     <a href="/players">Players</a>
     <a href="/teams">Teams</a>
     <a href="/add_player">Add Player</a>
+    <a href="/search_players">Search Players</a>
 </body>
 </html>

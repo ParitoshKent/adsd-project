@@ -38,5 +38,7 @@ body{
             </tr>
         % end
     </table>
+<a href="/add_player">Add Player</a>
+
 </body>
 </html>

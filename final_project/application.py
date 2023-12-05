@@ -67,5 +67,23 @@ def delete_player(player_id):
 
     redirect('/players')
 
+@route('/search_players')
+def search_players_form():
+    return template('search_players', players=None, search_query=None)
+
+@route('/search_players', method='get')
+def search_players():
+    search_query = request.query.get('search', '').strip()
+
+    if search_query:
+        # If there's a search query, filter players based on the name
+        cursor.execute("SELECT players.name, players.position, teams.name FROM players JOIN teams ON players.team_id = teams.id WHERE players.name LIKE ?", ('%' + search_query + '%',))
+        players = cursor.fetchall()
+    else:
+        # If no search query, set players to None
+        players = None
+
+    return template('search_players', players=players, search_query=search_query)
+
 if __name__ == '__main__':
     run(host='localhost', port=8080, debug=True)
